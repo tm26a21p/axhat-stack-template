@@ -2,14 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>{% block title %}{{ title }} - My Site{% endblock %}</title>
+    <title>{% block title %}{{ title }}{% endblock %}</title>
     {% block head %}{% endblock %}
 </head>
 
-<body>
-    <div id="content">
-        {% block content %}<p>Placeholder content</p>{% endblock %}
-    </div>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    {% block content %}{% endblock %}
 </body>
 
 </html>

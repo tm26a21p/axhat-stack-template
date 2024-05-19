@@ -1,57 +1,59 @@
 {% extends "base.html" %}
+{% let title = "Axhat Stack Template" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="/public/style.css">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #f7fafc;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="container mx-auto p-4">
-    <h1 class="text-4xl font-bold mb-4">Welcome to My Website</h1>
-    <p class="mb-4">This is a simple demonstration of a Tailwind CSS styled page with HTMX.</p>
+<div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <article class="prose mx-auto mb-8">
+        <h1 class="text-center">{{ title }}</h1>
+        <p class="text-center text-gray-600">This README is dynamically loaded from the project.</p>
+        {{ readme|safe }}
+        <p class="text-center mt-4">
+            <a href="https://github.com/tm26a21p/axhat-stack-template" class="text-blue-500 hover:underline">View
+                this template on GitHub</a>
+        </p>
+    </article>
 
-    <div class="flex space-x-4 mb-4">
-        <a class="button primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="#">
-            Primary Button
-        </a>
-        <a class="button secondary bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" href="#">
-            Secondary Button
-        </a>
-    </div>
+    <div class="text-center">
+        <h2 class="text-3xl font-bold mb-6">Example:</h2>
+        <h3 class="text-2xl font-semibold mb-4">Welcome to My Website</h3>
+        <p class="mb-6">This is a simple demonstration of a Tailwind CSS styled page with HTMX.</p>
 
-    <div class="mb-4">
-        <h2 class="text-2xl font-semibold mb-2">Interactive Section</h2>
-        <button hx-get="/more-content" hx-target="#more-content ul" hx-swap="beforeend"
-            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Load More Content
-        </button>
-        <div id="more-content" class="mt-4">
-            <ul class="list-disc pl-5"></ul>
+        <div class="flex justify-center space-x-4 mb-8">
+            <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg" href="#">
+                Primary Button
+            </a>
+            <a class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg" href="#">
+                Secondary Button
+            </a>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Interactive Section</h3>
+            <button hx-get="/more-content" hx-target="#more-content ul" hx-swap="beforeend"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg">
+                Load More Content
+            </button>
+            <div id="more-content" class="mt-6">
+                <ul class="list-disc pl-5 space-y-2"></ul>
+            </div>
         </div>
     </div>
-
-    <canvas id="wgpu-canvas" width="800" height="600"></canvas>
-    <script>
-        async function initWgpu() {
-            if (!navigator.gpu) {
-                console.error("WebGPU is not supported by this browser.");
-                return;
-            }
-
-            const canvas = document.getElementById('wgpu-canvas');
-            const adapter = await navigator.gpu.requestAdapter();
-            const device = await adapter.requestDevice();
-            const context = canvas.getContext('webgpu');
-            const format = navigator.gpu.getPreferredCanvasFormat();
-            context.configure({ device, format });
-
-            // More wgpu setup and rendering logic here
-        }
-
-        initWgpu();
-    </script>
-    {% call super() %}
 </div>
 {% endblock %}
