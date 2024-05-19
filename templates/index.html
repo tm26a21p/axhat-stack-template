@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/public/style.css">
+<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold mb-4">Welcome to My Website</h1>
+    <p class="mb-4">This is a simple demonstration of a Tailwind CSS styled page with HTMX.</p>
+
+    <div class="flex space-x-4 mb-4">
+        <a class="button primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="#">
+            Primary Button
+        </a>
+        <a class="button secondary bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" href="#">
+            Secondary Button
+        </a>
+    </div>
+
+    <div class="mb-4">
+        <h2 class="text-2xl font-semibold mb-2">Interactive Section</h2>
+        <button hx-get="/more-content" hx-target="#more-content ul" hx-swap="beforeend"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Load More Content
+        </button>
+        <div id="more-content" class="mt-4">
+            <ul class="list-disc pl-5"></ul>
+        </div>
+    </div>
+
+    <canvas id="wgpu-canvas" width="800" height="600"></canvas>
+    <script>
+        async function initWgpu() {
+            if (!navigator.gpu) {
+                console.error("WebGPU is not supported by this browser.");
+                return;
+            }
+
+            const canvas = document.getElementById('wgpu-canvas');
+            const adapter = await navigator.gpu.requestAdapter();
+            const device = await adapter.requestDevice();
+            const context = canvas.getContext('webgpu');
+            const format = navigator.gpu.getPreferredCanvasFormat();
+            context.configure({ device, format });
+
+            // More wgpu setup and rendering logic here
+        }
+
+        initWgpu();
+    </script>
+    {% call super() %}
+</div>
+{% endblock %}
