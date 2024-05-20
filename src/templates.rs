@@ -9,6 +9,7 @@ pub struct MoreContentTemplate
 {
     pub n: i32,
 }
+
 #[derive(Template)]
 #[template(path = "index.html")]
 pub struct IndexTemplate<'a>

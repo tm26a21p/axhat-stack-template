@@ -16,6 +16,7 @@ pub async fn index() -> impl IntoResponse
     let readme_raw = IndexTemplate::get_readme();
     let readme_html = markdown::to_html(&readme_raw);
     let readme = add_tailwind_classes(&readme_html);
+    println!("{}", readme);
     let template = templates::IndexTemplate {
         title: "Axhat Stack Template",
         readme: &readme,
