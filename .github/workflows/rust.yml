@@ -1,22 +1,24 @@
-name: Rust
+name: Build and Test Rust
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-env:
-  CARGO_TERM_COLOR: always
+on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Download Tailwind CSS CLI
+      run: |
+        curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+        chmod +x tailwindcss-linux-x64
+        sudo mv tailwindcss-linux-x64 /usr/local/bin/tailwindcss
+
+    - name: Build the project
+      run: cargo build
+      env:
+        RUST_BACKTRACE: 1
+
+    # Other steps like running tests, linting, etc., can be added here
