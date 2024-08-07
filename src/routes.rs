@@ -6,17 +6,12 @@ use askama_axum::{IntoResponse, Template};
 use lazy_static::lazy_static;
 use templates::MoreContentTemplate;
 
-use crate::{
-    templates::{self, IndexTemplate},
-    utils::add_tailwind_classes,
-};
+use crate::templates::{self, IndexTemplate};
 
 pub async fn index() -> impl IntoResponse
 {
     let readme_raw = IndexTemplate::get_readme();
-    let readme_html = markdown::to_html(&readme_raw);
-    let readme = add_tailwind_classes(&readme_html);
-    println!("{}", readme);
+    let readme = markdown::to_html(&readme_raw);
     let template = templates::IndexTemplate {
         title: "Axhat Stack Template",
         readme: &readme,
