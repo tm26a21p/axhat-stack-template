@@ -1,6 +1,6 @@
 # Axhat Stack Template
 
-Axhat (Axum-HTMX-Askama-Tailwind) is a web application template that enables fully reactive websites without JavaScript (There is some JS of course in HTMX, but the purpose is to avoid writing some).
+Axhat (Axum-HTMX-Askama-Tailwind) is a web application template that enables fully reactive websites without **any** JavaScript (There is some JS of course in HTMX, but the purpose is to avoid writing some).
 
 ## Features
 
