@@ -4,10 +4,10 @@ Axhat (Axum-HTMX-Askama-Tailwind) is a web application template that enables ful
 
 ## Features
 
-- **Axum**: Efficient routing and request handling.
-- **HTMX**: Dynamic, interactive pages with server-side logic.
-- **Askama**: Type-safe HTML templating.
-- **Tailwind CSS**: Fast, utility-first CSS framework.
+- **[Axum](https://github.com/tokio-rs/axum)**: Efficient routing and request handling.
+- **[HTMX](https://htmx.org)**: Dynamic, interactive pages with server-side logic.
+- **[Askama](https://github.com/djc/askama)**: Type-safe HTML templating.
+- **[Tailwind CSS](https://tailwindcss.com)**: Fast, utility-first CSS framework.
 
 ## Getting Started
 
