@@ -1,6 +1,4 @@
-
 use std::fs;
-
 use askama_axum::Template;
 
 #[derive(Template)]
