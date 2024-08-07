@@ -9,4 +9,8 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
   ],
+  purge: {
+    enabled: true,
+    content: ["./templates/**/*.{html,js}", "./src/**/*.{rs,html,js}"],
+  },
 }
