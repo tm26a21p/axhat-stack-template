@@ -5,7 +5,7 @@ fn main()
     let out_dir = env::var("OUT_DIR").unwrap();
     let tailwindcss_path = "tailwindcss"; // Path to the Tailwind CSS binary
     let input_css = "public/input.css";
-    let output_css = "public/style.css";
+    let output_css = "public/tailwind_generated.css";
 
     // Ensure the output directory exists
     let _ = std::fs::create_dir_all(Path::new(&out_dir).join("public"));
